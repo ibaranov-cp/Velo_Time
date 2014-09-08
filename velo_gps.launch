@@ -1,0 +1,16 @@
+<!--This launch file launches both the nmea_navsat_driver and a script
+that grabs GPRMC data from the velodyne UDP port. It then publishes
+fix and timing data from the GPS.  It is to be used when the included
+Garmin GPS receiver is connected to the Velodyne interface box.-->
+
+<!--Place the Velo_Time.py file in your custom_workspace package, and
+make sure the script is executable. Then, simply call this launch file.-->
+
+<launch>
+  <node pkg="custom_workspace" type="Velo_Time.py"
+    name="velodyne_gps" output="screen">
+  </node>
+
+  <node pkg="nmea_navsat_driver" type="nmea_topic_driver" name="nmea_topic_driver"
+    args="_useRMC:=true"/>
+</launch>
